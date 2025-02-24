@@ -1,6 +1,7 @@
 pub struct Hook {
-    pub shape: [[bool; 4]; 4],
     pub rotating: [[[bool; 4]; 4]; 4],
+    pub hook_size: usize,
+    pub num_piace: u64,
 }
 
 const HOOKMARK: [[bool; 4]; 4] = [
@@ -30,8 +31,9 @@ impl Hook {
             rotate += 1;
         }
         Self {
-            shape: HOOKMARK,
             rotating,
+            hook_size: 4,
+            num_piace: 5,
         }
     }
 }
