@@ -4,9 +4,9 @@ pub struct Hook {
 }
 
 const HOOKMARK: [[bool; 4]; 4] = [
-    [false, true, false, true],
+    [false, true, false, false],
     [true, false, true, true],
-    [true, true, false, false],
+    [true, false, false, false],
     [false, false, false, false],
 ];
 
