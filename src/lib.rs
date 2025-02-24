@@ -1,5 +1,89 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+#[test]
+fn test(){
+    {//rotating hook test
+        assert_eq!(HOOK.rotating[0],[
+            [false, true, false, false],
+            [true, false, true, true],
+            [true, false, false, false],
+            [false, false, false, false],
+        ]);
+
+        assert_eq!(HOOK.rotating[1],[
+            [false, true, true, false],
+            [false, false, false, true],
+            [false, false, true, false],
+            [false, false, true, false],
+        ]);
+
+        assert_eq!(HOOK.rotating[2],[
+            [false, false, false, false],
+            [false, false, false, true],
+            [true, true, false, true],
+            [false, false, true, false],
+        ]);
+
+        assert_eq!(HOOK.rotating[3],[
+            [false, true, false, false],
+            [false, true, false, false],
+            [true, false, false, false],
+            [false, true, true, false],
+        ]);
+    }
+    {
+        let mut game = HookMark::new();
+        game.put(0,1);
+        game.put(9,9);
+        game.put(0,2);
+        game.put(9,9);
+        game.put(1,0);
+        game.put(9,9);
+        game.put(2,1);
+        game.put(9,9);
+        game.put(3,1);
+        assert!(game.is_the_player_win(true));
+    }
+    {
+        let mut game = HookMark::new();
+        game.put(0,0);
+        game.put(16,18);
+        game.put(0,0);
+        game.put(17,18);
+        game.put(0,0);
+        game.put(18,19);
+        game.put(0,0);
+        game.put(19,18);
+        game.put(0,0);
+        game.put(19,17);
+        assert_eq!(game.is_the_player_win(false),true);
+    }
+    {
+        let mut game = HookMark::new();
+        game.put(0,0);
+        game.put(17,16);
+        game.put(0,0);
+        game.put(18,16);
+        game.put(0,0);
+        game.put(18,18);
+        game.put(0,0);
+        game.put(18,19);
+        game.put(0,0);
+        game.put(19,17);
+        assert_eq!(game.is_the_player_win(false),true);
+    }
+    {
+        let mut game = HookMark::new();
+        game.put(0,0);
+        game.put(17,18);
+        game.put(0,0);
+        game.put(18,16);
+        game.put(0,0);
+        game.put(18,17);
+        game.put(0,0);
+        game.put(18,19);
+        game.put(0,0);
+        game.put(19,19);
+        assert_eq!(game.is_the_player_win(false),true);
+    }
 }
 
 mod hook;
